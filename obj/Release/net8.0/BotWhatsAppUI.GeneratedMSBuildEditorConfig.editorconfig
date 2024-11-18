@@ -42,6 +42,10 @@ build_metadata.AdditionalFiles.CssScope = b-uqtqdgzj9r
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0L05hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-t0rw34pnr3
 
+[/home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/Pages/AutoResponse.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXV0b1Jlc3BvbnNlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-uf5kvrfjoj
+
 [/home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/Pages/Message.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWVzc2FnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-y3vh4sygaj

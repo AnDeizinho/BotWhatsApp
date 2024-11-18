@@ -1,38 +1,22 @@
-2024/11/17-21:48:32.510 3d245 Reusing MANIFEST /home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/desktop-ui/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/11/17-21:48:32.510 3d245 Recovering log #707
-2024/11/17-21:48:32.525 3d245 Reusing old log /home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/desktop-ui/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000707.log 
-2024/11/17-21:48:34.028 3d24b Level-0 table #716: started
-2024/11/17-21:48:34.034 3d24b Level-0 table #716: 332213 bytes OK
-2024/11/17-21:48:34.035 3d24b Delete type=0 #707
-2024/11/17-21:48:34.036 3d24b Manual compaction at level-0 from '\x00\xb5\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\xb6\x00\x00\x00' @ 0 : 0; will stop at (end)
-2024/11/17-21:48:34.082 3d256 Compacting 1@1 + 5@2 files
-2024/11/17-21:48:34.132 3d256 Generated table #717@1: 58332 keys, 2220127 bytes
-2024/11/17-21:48:34.157 3d256 Generated table #718@1: 3874 keys, 2152029 bytes
-2024/11/17-21:48:34.199 3d256 Generated table #719@1: 23509 keys, 2216277 bytes
-2024/11/17-21:48:34.237 3d256 Generated table #720@1: 54984 keys, 2192294 bytes
-2024/11/17-21:48:34.277 3d256 Generated table #721@1: 77474 keys, 1713510 bytes
-2024/11/17-21:48:34.277 3d256 Compacted 1@1 + 5@2 files => 10494237 bytes
-2024/11/17-21:48:34.279 3d256 compacted to: files[ 0 0 5 0 0 0 0 ]
-2024/11/17-21:48:34.280 3d256 Delete type=2 #712
-2024/11/17-21:48:34.280 3d256 Delete type=2 #716
-2024/11/17-21:48:34.280 3d256 Delete type=2 #713
-2024/11/17-21:48:34.280 3d256 Delete type=2 #710
-2024/11/17-21:48:34.280 3d256 Delete type=2 #709
-2024/11/17-21:48:34.280 3d256 Delete type=2 #711
-2024/11/17-22:18:53.561 3ee4c Level-0 table #723: started
-2024/11/17-22:18:53.583 3ee4c Level-0 table #723: 1297170 bytes OK
-2024/11/17-22:18:53.585 3ee4c Delete type=0 #715
-2024/11/17-22:19:33.687 3f6db Compacting 1@1 + 5@2 files
-2024/11/17-22:19:33.739 3f6db Generated table #724@1: 60137 keys, 2219625 bytes
-2024/11/17-22:19:33.760 3f6db Generated table #725@1: 7768 keys, 2157141 bytes
-2024/11/17-22:19:33.797 3f6db Generated table #726@1: 21062 keys, 2207926 bytes
-2024/11/17-22:19:33.833 3f6db Generated table #727@1: 45127 keys, 2186074 bytes
-2024/11/17-22:19:33.880 3f6db Generated table #728@1: 93055 keys, 2055751 bytes
-2024/11/17-22:19:33.880 3f6db Compacted 1@1 + 5@2 files => 10826517 bytes
-2024/11/17-22:19:33.882 3f6db compacted to: files[ 0 0 5 0 0 0 0 ]
-2024/11/17-22:19:33.883 3f6db Delete type=2 #717
-2024/11/17-22:19:33.883 3f6db Delete type=2 #721
-2024/11/17-22:19:33.883 3f6db Delete type=2 #723
-2024/11/17-22:19:33.883 3f6db Delete type=2 #718
-2024/11/17-22:19:33.883 3f6db Delete type=2 #720
-2024/11/17-22:19:33.883 3f6db Delete type=2 #719
+2024/11/18-00:03:50.299 496b2 Reusing MANIFEST /home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/desktop-ui/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/11/18-00:03:50.299 496b2 Recovering log #778
+2024/11/18-00:03:50.314 496b2 Reusing old log /home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/desktop-ui/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000778.log 
+2024/11/18-00:03:51.819 496b5 Level-0 table #787: started
+2024/11/18-00:03:51.825 496b5 Level-0 table #787: 389456 bytes OK
+2024/11/18-00:03:51.827 496b5 Delete type=0 #778
+2024/11/18-00:03:51.827 496b5 Manual compaction at level-0 from '\x00\xbd\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\xbe\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/11/18-00:03:51.871 496c3 Compacting 1@1 + 5@2 files
+2024/11/18-00:03:51.919 496c3 Generated table #788@1: 61511 keys, 2219259 bytes
+2024/11/18-00:03:51.947 496c3 Generated table #789@1: 11590 keys, 2161874 bytes
+2024/11/18-00:03:51.985 496c3 Generated table #790@1: 16782 keys, 2203546 bytes
+2024/11/18-00:03:52.020 496c3 Generated table #791@1: 40185 keys, 2179524 bytes
+2024/11/18-00:03:52.073 496c3 Generated table #792@1: 102887 keys, 2253596 bytes
+2024/11/18-00:03:52.074 496c3 Generated table #793@1: 403 keys, 33516 bytes
+2024/11/18-00:03:52.074 496c3 Compacted 1@1 + 5@2 files => 11051315 bytes
+2024/11/18-00:03:52.075 496c3 compacted to: files[ 0 0 6 0 0 0 0 ]
+2024/11/18-00:03:52.076 496c3 Delete type=2 #787
+2024/11/18-00:03:52.076 496c3 Delete type=2 #782
+2024/11/18-00:03:52.076 496c3 Delete type=2 #781
+2024/11/18-00:03:52.076 496c3 Delete type=2 #784
+2024/11/18-00:03:52.076 496c3 Delete type=2 #783
+2024/11/18-00:03:52.076 496c3 Delete type=2 #780

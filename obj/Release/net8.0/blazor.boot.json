@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BotWhatsAppUI",
   "resources": {
-    "hash": "sha256-fjiQpjCqumliWHFktIezow/35LsnMVQl/RtOHxlMYDA=",
+    "hash": "sha256-Kn+EINZB1bGkFTCwEMDvYWRIQeFgIH1HJ+MqaErOxcU=",
     "jsModuleNative": {
       "dotnet.native.8.0.10.816khpre4k.js": "sha256-QVxMlY7ohmjgde/bZMA0dlWDAeuUP+tEfkiSdg4DFcE="
     },
@@ -208,10 +208,10 @@
       "mscorlib.wasm": "sha256-KvqZaNpjwhrOuzE4b4aMFsI+VUTyiWfoDI4zn4l9BM8=",
       "netstandard.wasm": "sha256-v+s7sWxtOM6bnOvC0jFrtnm6uMfbDymwl2nHNgbS2LM=",
       "System.Private.CoreLib.wasm": "sha256-pklll63uFQoY6vaD3vbluS9osYiJWLLLmob1yHFgepI=",
-      "BotWhatsAppUI.wasm": "sha256-UUnJbx1DxZC+CeKZD1m8ZPqgkvQ5U8PVa6342ishL8U="
+      "BotWhatsAppUI.wasm": "sha256-+r1NTr9O9zHEsvmmiaDViD4//LgU2OQEMT5S8NIWZKc="
     },
     "pdb": {
-      "BotWhatsAppUI.pdb": "sha256-LneYHUdganugC+6JSJFMAT0oYhR4LdJ+vMoXgXErVAk="
+      "BotWhatsAppUI.pdb": "sha256-Me3xdrmtgvc06WbKrwAW9CW9G59dqUYEM+BUXpCAoxI="
     }
   },
   "cacheBootResources": true,

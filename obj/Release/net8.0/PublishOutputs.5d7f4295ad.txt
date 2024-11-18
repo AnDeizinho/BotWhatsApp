@@ -1,3 +1,6 @@
+/home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/desktop-ui/publish/desktop-ui/publish/web.config
 /home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/desktop-ui/publish/desktop-ui/package-lock.json
 /home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/desktop-ui/publish/desktop-ui/package.json
+/home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/desktop-ui/publish/desktop-ui/publish/wwwroot/sample-data/weather.json
+/home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/desktop-ui/publish/desktop-ui/publish/wwwroot/_framework/blazor.boot.json
 /home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/desktop-ui/publish/web.config

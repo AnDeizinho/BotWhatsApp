@@ -168,10 +168,15 @@ main[b-uqtqdgzj9r] {
         overflow-y: auto;
     }
 }
+/* /Pages/AutoResponse.razor.rz.scp.css */
+
+#send-response-text[b-uf5kvrfjoj] {
+    height: 40vh;
+}
 /* /Pages/Message.razor.rz.scp.css */
 
 #send-message-contacts[b-y3vh4sygaj] {
-    height: 50vh;
+    height: 40vh;
 }
 
 #send-message-text[b-y3vh4sygaj] {

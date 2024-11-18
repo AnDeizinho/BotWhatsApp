@@ -1,17 +1,18 @@
 const express = require('express');
-const {Client, LocalAuth} = require('whatsapp-web.js')
+const { Client, LocalAuth } = require('whatsapp-web.js')
 const qrcode = require('qrcode');
 const { createCanvas } = require('canvas');
 const cors = require('cors');
 const path = require('path');
 const web = express();
+const db = require('./database');
 
 
 web.use(cors());
 web.use(express.json());
 
 let qrCodeImage = null
-let messageResponse = ""
+let messageResponse = "teste de resposta automática"
 
 
 const client = new Client({
@@ -33,11 +34,52 @@ client.on('ready', () => {
 
 
 client.on('message', async message => {
-    if(!message.isGroupMsg){
-        const contact = await message.getContact()
-        const msg = messageResponse.replace("{contact.name}", `${contact.pushname || contact.name}`)
-        client.sendMessage(message.from, msg)
-        console.log(`Mensagem recebida ${message.author}/${message.from}: ${message.body}`);
+    if (!message.isGroupMsg) {
+        const phoneNumber = message.from.replace("@c.us", "");
+        db.numberExists(phoneNumber, async (err, exists) => {
+            if (err) {
+                console.log(`[post] [on/message] ${phoneNumber}:`, err.message);
+                return;
+            }
+
+            const contact = await message.getContact();
+            const name = contact.pushname || contact.name;
+
+            if (!exists) {
+                const msg = messageResponse.replace("{contact.name}", name);
+                client.sendMessage(message.from, msg);
+                db.createContact(phoneNumber, name, (err, result) => {
+                    if (err) {
+                        console.log(`[post] [on/message] ${phoneNumber}:`, err.message);
+                    } else {
+                        console.log(`[post] [on/message] Contato criado: ${phoneNumber}, ${name}`);
+                    }
+                });
+            } else {
+                db.isAlreadyAnswered(phoneNumber, (err, answered) => {
+                    if (err) {
+                        console.log(`[post] [on/message] ${phoneNumber}:`, err.message);
+                        return;
+                    }
+
+                    if (!answered) {
+                        const msg = messageResponse.replace("{contact.name}", name);
+                        client.sendMessage(message.from, msg);
+                        db.updateContact(phoneNumber, name, 1, (err, result) => {
+                            if (err) {
+                                console.log(`[post] [on/message] ${phoneNumber}:`, err.message);
+                            } else {
+                                console.log(`[post] [on/message] Contato atualizado: ${phoneNumber}, ${name}`);
+                            }
+                        });
+                    } else {
+                        console.log(`[post] [on/message] O contato ${phoneNumber} já foi respondido.`);
+                    }
+                });
+            }
+        });
+
+        console.log(`Mensagem recebida de ${message.author}/${message.from}: ${message.body}`);
     }
 });
 
@@ -46,14 +88,14 @@ client.initialize();
 
 
 web.get('/api/qr-code', (req, res) => {
-    if(qrCodeImage) {
+    if (qrCodeImage) {
         console.log("entrou no if")
         res.setHeader('Content-Type', 'image/png');
         res.send(qrCodeImage);
     }
     else {
         console.log("entrou no else")
-        res.status(503).send({message: "qr code não esta disponível"})
+        res.status(503).send({ message: "qr code não esta disponível" })
     }
 })
 
@@ -65,29 +107,49 @@ web.post("/api/send_message", async (req, res) => {
     await Promise.all(numbers.map((phoneNumber) => {
         return client.sendMessage(`${phoneNumber}@c.us`, message)
             .then(response => {
+                db.numberExists(phoneNumber, async (err, exists) => {
+                    const contact = await response.getContact();
+                    const name = contact.pushname || contact.name
+                    if (err) {
+                        console.log(`[post] [api/send_message] ${phoneNumber}`, err.message);
+                    }
+                    if (!exists) {
+                        db.createContact(phoneNumber, name, (err, result) => {
+                            if (err) {
+                                console.log(`[post] [api/send_message] ${phoneNumber}`, err.message);
+                            }
+                        });
+                    } else {
+                        db.updateContact(phoneNumber, name, 0, (err, result) => {
+                            if (err) {
+                                console.log(`[post] [api/send_message] ${phoneNumber}`, err.message);
+                            }
+                        });
+                    }
+                });
                 success++;
                 console.log('Mensagem enviada:', phoneNumber, success);
             })
             .catch(err => {
-                errors.push({errorNumber: phoneNumber.toString(), message: `Erro ao enviar a mensagem: ${err}`}); 
+                errors.push({ errorNumber: phoneNumber.toString(), message: `Erro ao enviar a mensagem: ${err}` });
                 console.error('Erro ao enviar a mensagem:', err);
             });
     }));
 
-    console.log({sended: success, totalErrors: errors.length, allErrors: errors})
-    res.send({sended: success, totalErrors: errors.length, allErrors: errors})
+    console.log({ sended: success, totalErrors: errors.length, allErrors: errors })
+    res.send({ sended: success, totalErrors: errors.length, allErrors: errors })
 })
 
 web.post("/api/auto-response", async (req, res) => {
     const { autoResponse } = req.body;
     messageResponse = autoResponse;
-    res.send({message: "Mensagem automática salva !"})
+    res.send({ message: "Mensagem automática salva !" })
     console.log("[post] [/api/auto-response] nova mensagem automatica salva")
 })
 
 web.get("/api/auto-response", async (req, res) => {
-    res.send({message: messageResponse})
-    console.log("[get] [/api/auto-response] nova mensagem automatica salva")
+    res.send({ message: messageResponse })
+    console.log("[get] [/api/auto-response] obtendo mensagem automatica salva")
 })
 
 web.use(express.static(path.join(__dirname, 'publish/wwwroot')));

@@ -1032,3 +1032,7 @@
 /home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/obj/Release/net8.0/refint/BotWhatsAppUI.dll
 /home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/obj/Release/net8.0/BotWhatsAppUI.pdb
 /home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/obj/Release/net8.0/ref/BotWhatsAppUI.dll
+/home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/bin/Release/net8.0/desktop-ui/publish/web.config
+/home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/bin/Release/net8.0/desktop-ui/publish/wwwroot/sample-data/weather.json
+/home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/bin/Release/net8.0/desktop-ui/publish/wwwroot/_framework/blazor.boot.json
+/home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/obj/Release/net8.0/scopedcss/Pages/AutoResponse.razor.rz.scp.css
