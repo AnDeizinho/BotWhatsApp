@@ -1,0 +1,56 @@
+﻿@page "/"
+@inject BotWhatsAppUI.Services.WhatsAppService WhatsAppService
+@using BotWhatsAppUI
+
+
+<PageTitle>Sessão</PageTitle>
+
+<h1>Sessão</h1>
+
+@if (!string.IsNullOrEmpty(base64Image))
+{
+    <p>Siga os seguintes passos para conectar o whatsapp alvo ao bot</p>
+    <ul>
+        <li>No aplicativo, vá para <strong>Configurações</strong> (geralmente acessível através dos três pontinhos no canto
+            superior direito)</li>
+        <li>Selecione <strong>Dispositivos Conectados</strong></li>
+        <li>Toque em <strong>Conectar Dispositivo</strong></li>
+        <li>Aponte a câmera do seu celular para o QR code exibido abaixo</li>
+    </ul>
+    <img src="@base64Image" alt="QR Code" />
+}
+else
+{
+    <p>QR code não está disponível no momento.</p>
+    <p>Isso significa que você possui uma sessão ativa</p>
+}
+
+@code {
+    private string base64Image = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadQrCodeAsync();
+        if(TimerState.MyTimer == null)
+        {
+            TimerState.MyTimer = new System.Timers.Timer(30000);
+            TimerState.MyTimer.Elapsed += async (sender, e) => await LoadQrCodeAsync();
+            TimerState.MyTimer.AutoReset = true;
+            TimerState.MyTimer.Enabled = true;
+        }
+        else
+        {
+            TimerState.StartTimer();
+        }
+    }
+
+    private async Task LoadQrCodeAsync()
+    {
+        var qrCodeImage = await WhatsAppService.GetQrCodeAsync();
+        if (qrCodeImage != null)
+        {
+            base64Image = $"data:image/png;base64,{Convert.ToBase64String(qrCodeImage)}";
+        }
+        StateHasChanged();
+    }
+}

@@ -1,0 +1,79 @@
+﻿@page "/message"
+@using System.Text
+@using BotWhatsAppUI
+@using BotWhatsAppUI.Services
+@inject BotWhatsAppUI.Services.WhatsAppService WhatsAppService
+
+<PageTitle>Mensagem</PageTitle>
+
+<h1>Mensagem</h1>
+
+<form @onsubmit="HandleSubmit">
+    <div class="mb-3">
+        <label for="send-message-text" class="form-label">Texto da Mensagem</label>
+        <textarea placeholder="@WarningMessage" class="form-control" id="send-message-text" @bind="myModel.Message"/>
+    </div>
+
+    <div class="mb-3">
+        <label for="send-message-contacts" class="form-label">Contatos</label>
+        <textarea class="form-control" id="send-message-contacts" @bind="myModel.Numbers"
+        placeholder="@Warning"/>
+    </div>
+    <button type="submit" class="btn btn-primary">
+        Enviar
+    </button>
+
+</form>
+
+
+@if(responseModel != null){
+    <div class="alert alert-sucess" role="alert">
+        <p>Mensagens Enviadas: @responseModel.Sended</p>
+        <p>Total de erros: @responseModel.TotalErrors</p>
+        <ul>
+            @foreach(var i in responseModel.AllErrors)
+            {
+                <li><strong>i.ErrorNumber:</strong> i.message</li>
+            }
+        </ul>
+    </div>
+}
+
+
+@code {
+    private MessageModel myModel = new MessageModel();
+    private MessageResponseModel responseModel = null;
+    private string WarningMessage = $"Você pode mandar mensagens aqui tal como mandaria no whatsapp normalmente, no entanto caso você queira usar emotes nas mensagens você deve copiar e colar o código do emote do Whatsapp.\nRecomendo preparar sua mensagem no WhatsApp e copiar o texto completo aqui\nExemplos:\nemote sorrindo: 😁\nemote love: 🥰\nemote de raiva: 😡";
+    private string Warning = $"Atenção!!\nOs números devem conter apenas números sem espaços, não é necessário adicionar o digito 9 após o ddd\nOu seja os números devem conter a estrutura <55><92><12345678> totalizando 12 digitos, pule uma linha para cada número, não podem haver mais de um contato na mesma linha, Siga os exemplos abaixo:\n559299726097\n559299726097\n559299726097";
+    class MessageModel {
+        public string Numbers {get;set;}
+        public string Message {get;set;}
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Run(()=>{
+            if(TimerState.MyTimer != null)
+            {
+                TimerState.StopTimer();
+            }
+        });
+    }
+
+    private async Task HandleSubmit()
+    {
+        await SendMessage();
+    }
+
+    private async Task SendMessage()
+    {
+        List<string> numbers = myModel.Numbers
+            .Replace("+", "")
+            .Replace("-", "")
+            .Replace(" ", "")
+            .Split(new[] {"\r\n", "\n"}, StringSplitOptions.RemoveEmptyEntries)
+            .Select(each => each.Trim())
+            .ToList();
+        responseModel = await WhatsAppService.SendMessageAsync(numbers, myModel.Message.Trim());
+    }
+}

@@ -1,0 +1,6 @@
+2024/11/17-21:48:32.137 3d245 Reusing MANIFEST /home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/desktop-ui/.wwebjs_auth/session/Default/Local Storage/leveldb/MANIFEST-000001
+2024/11/17-21:48:32.137 3d245 Recovering log #8
+2024/11/17-21:48:32.138 3d245 Reusing old log /home/andcosta/dotnet_projects/WathsAppBot/BotWhatsAppUI/desktop-ui/.wwebjs_auth/session/Default/Local Storage/leveldb/000008.log 
+2024/11/17-21:49:32.660 3d24b Level-0 table #11: started
+2024/11/17-21:49:32.667 3d24b Level-0 table #11: 13220 bytes OK
+2024/11/17-21:49:32.669 3d24b Delete type=0 #8

@@ -1,0 +1,89 @@
+﻿@page "/auto-response"
+@inject BotWhatsAppUI.Services.WhatsAppService WhatsAppService
+@using BotWhatsAppUI
+@using BotWhatsAppUI.Services
+
+
+<PageTitle>Resposta Automática</PageTitle>
+
+<h1>Resposta Automática</h1>
+
+<form @onsubmit="HandleSubmit">
+    @if(isEnebladToEdit)
+    {
+    <div class="mb-3">
+        <label for="send-response-text" class="form-label">Texto da resposta automática</label>
+        <textarea class="form-control" id="send-response-text" @bind="myModel.Message">
+        </textarea>
+    </div>
+    }
+    else
+    {
+    <div class="mb-3">
+        <label for="send-response-text" class="form-label">Texto da resposta automática</label>
+        <textarea value="@MessageSaved" disabled class="form-control" id="send-response-text">
+        </textarea>
+    </div>
+    }
+
+    @if(isEnebladToEdit)
+    {
+        <button class="btn btn-primary" @onclick="OnEditChangeClick">
+            Cancelar
+        </button>
+
+        <button type="submit" class="btn btn-primary">
+            Enviar
+        </button>
+    }else
+    {
+        <button class="btn btn-primary" @onclick="OnEditChangeClick">
+            Editar
+        </button>
+
+        <button type="submit" disabled class="btn btn-primary">
+            Enviar
+        </button>
+    }
+    
+</form>
+
+
+
+@code {
+    private bool isEnebladToEdit = false;
+    private string MessageSaved = "";
+
+    private AutoResponseModel myModel = new AutoResponseModel();
+    private void OnEditChangeClick()
+    {
+        LoadResponseSaved();
+        isEnebladToEdit = !isEnebladToEdit;
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Run(() => {
+            if(TimerState.MyTimer != null)
+            {
+                TimerState.StopTimer();
+            }
+        });
+        LoadResponseSaved();
+    }
+
+    private async Task LoadResponseSaved()
+    {
+        MessageSaved = (await WhatsAppService.GetAutoResponse()).Message;
+        StateHasChanged();
+        Console.WriteLine(MessageSaved);
+    }
+
+    private async Task SaveAutoResponse()
+    {
+        await WhatsAppService.SetAutoResponseAsync(myModel.Message);
+    }
+    private async Task HandleSubmit()
+    {
+        SaveAutoResponse();
+    }
+}
